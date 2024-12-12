@@ -1,0 +1,49 @@
+/* SECTION describe */
+
+
+/* SECTION describe */
+
+.describe {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.describe__title {
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+.describe__unit {
+  margin-left: 20px;
+  list-style: disc;
+  padding-block: 10px;
+}
+
+.img {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.img__list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: var(--background-card);
+  padding-block: 20px;
+  gap: 1rem;
+}
+
+.img__img {
+  width: 230px;
+  height: auto;
+}

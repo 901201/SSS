@@ -1,0 +1,149 @@
+/* SECTION banner */
+
+.banner {
+  min-height: 25rem;
+  width: 100%;
+  background: url("../images/blue-lit-futuristic-underground-corridor.jpg") no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+/* SECTION ABOUT */
+
+.about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-block: 3rem;
+  gap: 3rem;
+}
+
+.about__item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.about__img {
+  object-fit: contain;
+  width: var(--width-about);
+}
+
+.about__link {
+  color: var(--text-color-hover);
+}
+
+.about__link:hover {
+  text-decoration: underline;
+}
+
+.about__text-block {
+  gap: 1rem;
+}
+
+
+/* SECTION additives */
+
+.additives {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding-block: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.additives__title {
+  font-size: 1.5rem;
+}
+
+.additives__img {
+  object-fit: contain;
+  width: var(--width-img);
+}
+
+.additives__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* SECTION underground */
+
+.underground {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding-block: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.underground__title {
+  font-size: 1.5rem;
+}
+
+
+.underground__img {
+  object-fit: contain;
+  width: var(--width-img);
+}
+
+.underground__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* SECTION sistemy */
+
+.sistemy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding-block: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.sistemy__title {
+  font-size: 1.5rem;
+}
+
+.sistemy__img {
+  object-fit: contain;
+  width: var(--width-img);
+}
+
+.sistemy__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media (max-width: 1000px) {
+  .about,
+  .additives,
+  .underground,
+  .sistemy {
+    flex-wrap: wrap;
+  }
+
+  .underground:nth-child(odd) {
+    flex-wrap: wrap-reverse;
+  }
+}
