@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   const modal = document.querySelector(".modal");
   const button = document.querySelector('.open-button');
-  const notCloseModal = document.getElementById('feedback-form');
+  const feedbackForm = document.querySelector("#feedback-form");
+  const phoneInput = document.getElementById('phone');
 
   button.addEventListener("click", () => {
     modal.showModal();
@@ -11,47 +12,42 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.close();
   });
 
-  notCloseModal.addEventListener('click', (event) => event.stopPropagation());
+  // Предотвращаем закрытие модального окна при клике внутри формы
+  feedbackForm.addEventListener('click', (event) => event.stopPropagation());
 
   // Обработчик отправки формы
-  const feedbackForm = document.querySelector("#feedback-form");
-  feedbackForm.addEventListener("submit", (e) => {
+  feedbackForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const phoneValue = document.querySelector('#phone').value.replace(/\D/g, ''); // Получаем только цифры
+    const phoneValue = phoneInput.value.replace(/\D/g, ''); // Получаем только цифры
 
     if (phoneValue.length !== 11) { // Проверяем, что введено ровно 11 цифр
       alert("Пожалуйста, введите корректный номер телефона.");
       return; // Прекращаем отправку формы
     }
 
-    const feedbackFormData = new FormData(feedbackForm);
-    const feedback = Object.fromEntries(feedbackFormData);
-    sendFeedback(feedback);
+    // Формируем данные для отправки
+    let formData = new FormData(feedbackForm);
+
+    try {
+      let response = await fetch('sendmail.php', {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        let result = await response.json();
+        alert(result.message || "Форма успешно отправлена!");
+        modal.close(); // Закрываем модальное окно
+      } else {
+        alert("Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.");
+      }
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert("Произошла ошибка соединения. Пожалуйста, попробуйте позже.");
+    }
   });
 });
-
-// Функция для отправки данных формы
-function sendFeedback(feedback) {
-  fetch("http://127.0.0.1:3000/api/feedback", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(feedback),
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    alert("Форма успешно отправлена!");
-    const modal = document.querySelector(".modal");
-    modal.close();
-  })
-  .catch((error) => {
-    console.error("Ошибка:", error);
-    alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
-  });
-}
 
 
 window.onload = function() {
